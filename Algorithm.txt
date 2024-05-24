@@ -1,0 +1,65 @@
+Algorithm For Horse Race
+
+Goals:
+a. Create a program that races horses
+b. Take the trackLength and numHorses dynamically
+
+
+Input:
+
+0. include <iostream>, <cstdlib>, <ctime> //import libraries
+   using namespace std;
+
+1. Create a function to take user input (trackLength and number of horses)
+	a. use while true loop to keep asking user until they meet 			specifications (min 2 horses; min 2 trackLength)
+		 int getHorses()
+			int horses;
+			while true {
+				....
+				break;
+		int getTrackLength()...
+2. Create a function to start the race and initialize positions
+	a. make all horses start at 0
+	 	void initializeRace (int numHorses, int *position)
+  			for (int i = 0; i < numHorses; ++i)
+      				position[i] = 0
+3. Create a function to move each horse randomly
+	a. make the function take the number of horses and point to the position of 		said horse
+	b. use "rand() % numHorses;" this selects one random horse to move
+	c. point to the position of the horse and make it move by 1
+		position[horseMoving] += 1;
+4. Create a function to print the horse race visually; void displayRace (int numHorses, int *position)
+	a. use parameters of numHorses and int *position
+	b. use a nested for loop to print out each horse, with the outer loop being 	the all the horse and the inner loop being the horse moving
+		for (int i = 0; i < numHorses; ++i) //loop through horses
+    			{
+      				cout << "Horse " << i + 1 << ": "; //print horse and its index +1 so no "Horse 0: "
+      		for (int j = 0; j < position[i]; ++j) //moving horse 
+		  {
+	  		cout << "."; //shows progress of horse
+		  }
+      		cout<<i+1<< endl; // for visualization purposes
+5. Create a function to determine winner
+	a. take int numHorses, int *positons, and int trackLength as parameters
+	b. use a for loop to loop through horses, identifying when positon[horse] has reached the trackLength.
+	c. return winner
+		
+      if (positions[i] == trackLength) //must have reached track length
+	{
+	  winner = i; // == trackLength == winner
+	  break; //break out of loop once you find winner
+
+Output:
+
+6. call functions int main(){
+	a. use srand (time(0)) to randomize using time
+	b. store trackLength and numHorses as variables to be used later
+	c. create an array of positons based on the numHorses 
+		int horsePositions[numHorses];
+	d. call initializeRace function 
+		initializeRace (numHorses, horsePositions);
+	e. use while true loop to continue race until theres a winner
+		1. inside call moveHorses(numHorses, horsePositions); and       displayRace (numHorses, horsePositions);
+		2. store winner as a variable 
+			      int winner = determineWinner (numHorses, horsePositions, trackLength); //determine winner
+		3. print out winning horse and break out of the loop
